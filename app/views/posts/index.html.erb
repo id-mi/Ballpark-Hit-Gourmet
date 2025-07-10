@@ -1,0 +1,4 @@
+<h1>投稿一覧</h1>
+<% @posts.each do |post| %>
+  <p><%= link_to post.gourme_name, post_path(post.id) %></p>
+<% end %>
