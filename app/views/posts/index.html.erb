@@ -1,5 +1,7 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
+  <p>グルメ名</p>
   <p><%= link_to post.gourme_name, post_path(post.id) %></p>
-  <%= attachment_image_tag post, :image, :fill, 100, 100, format: 'jpeg' %>
+  <p>画像</p>
+  <%= attachment_image_tag post, :image, format: 'jpeg', size: "100x100" %>
 <% end %>
