@@ -73,3 +73,5 @@ gem "refile-mini_magick"
 gem "ffi", "~> 1.17"
 
 gem 'devise'
+
+gem 'kaminari'

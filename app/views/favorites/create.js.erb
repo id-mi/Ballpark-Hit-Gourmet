@@ -1,0 +1,1 @@
+document.getElementById('favorite-<%= @post.id %>').innerHTML = '<%= j(link_to post_favorites_path(@post), data: { turbo_method: :delete }, class: "favorite-link") do %><span class="favorite-icon" style="color: red;">♥</span><span class="favorite-count"><%= @post.favorites.count %></span><% end %>'; 
