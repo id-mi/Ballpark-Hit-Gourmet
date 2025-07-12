@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  belongs_to :place_category
+  belongs_to :genre_category
 end
