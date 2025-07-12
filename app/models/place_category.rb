@@ -1,0 +1,2 @@
+class PlaceCategory < ApplicationRecord
+end
