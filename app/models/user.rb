@@ -9,4 +9,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   belongs_to :place_category
   belongs_to :genre_category
+
+  attachment :profile_image
 end
