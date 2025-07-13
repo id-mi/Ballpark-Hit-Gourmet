@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_12_082317) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_13_074036) do
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.integer "user_id"
@@ -48,6 +48,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_12_082317) do
     t.string "image_id"
     t.integer "place_category_id"
     t.integer "genre_category_id"
+    t.integer "user_id"
     t.index ["genre_category_id"], name: "index_posts_on_genre_category_id"
     t.index ["place_category_id"], name: "index_posts_on_place_category_id"
   end

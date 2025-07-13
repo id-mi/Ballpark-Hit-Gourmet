@@ -1,5 +1,6 @@
 <h1>投稿一覧</h1>
 <% @posts.each do |post| %>
+  <p class="caption"><%= post.user.name %></p>
   <p>グルメ名</p>
   <p><%= link_to post.gourme_name, post_path(post.id) %></p>
   <p>画像</p>
