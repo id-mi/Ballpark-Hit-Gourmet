@@ -12,9 +12,25 @@
       <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
     </p>
   <% end %>
-  <div class="d-flex w-100">
+  <% if current_user != @user %>
+    <% if current_user.following?(@user) %>
+      <p class="d-flex align-self-end">
+        <%= link_to "フォローを解除する", user_relationships_path(@user), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+      </p>
+    <% else %>
+      <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-success" %>
+    <% end %>
+  <% end %>
     <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
     <h4 class="ml-3 mb-3 card w-100 profile"><%= @user.profile %></h4>
+  </div>
+  <div class="row mt-5">
+    <%= link_to follows_user_path(@user) do %>
+      <h6>フォロー<%= @following_users.count %></h6>
+    <% end %>  
+    <%= link_to followers_user_path(@user) do %>
+      <h6>フォロワー<%= @follower_users.count %></h6>
+    <% end %>
   </div>
     <div class="row mt-5 index-left w-100">
       <% @posts.each do |post| %>
