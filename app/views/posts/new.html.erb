@@ -1,6 +1,13 @@
 <h1>新規投稿</h1>
-<%= form_with model: @post, local:true do |f| %>
-  
+<% if @post.errors.any? %>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+<%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
+
   <div class="field">
     <%= f.label :place_category_id, "球場名" %><br>
     <%= f.collection_select :place_category_id, PlaceCategory.all, :id, :name, prompt: "選択してください" %>

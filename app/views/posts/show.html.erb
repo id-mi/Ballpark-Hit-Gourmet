@@ -1,3 +1,11 @@
+<h1>投稿詳細</h1>
+<% if @comment.errors.any? %>
+  <ul>
+    <% @comment.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <p class="caption"><%= @post.user.name %></p>
 <h2>グルメ名</h2>
 <p><%= @post.gourme_name %></p>
@@ -23,10 +31,10 @@
 </div>
 
 <% if @post.user == current_user %>
-<%= link_to "ポストの編集", edit_post_path(@post.id) %><br>
-<%= link_to "ポストの削除", post_path(@post.id),  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %><br>
+  <%= link_to "ポストの編集", edit_post_path(@post.id) %><br>
+  <%= link_to "ポストの削除", post_path(@post.id),  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %><br>
 <% end %>
-<%= link_to "投稿一覧へ", posts_path %>
+  <%= link_to "投稿一覧へ", posts_path %>
 
 <div class="comments ml-5 mt-5">
     <h2>コメント</h2>

@@ -4,10 +4,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    post.save
-    redirect_to post_path(post.id)
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    if @post.save
+      redirect_to post_path(@post.id)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index
@@ -25,9 +28,12 @@ class PostsController < ApplicationController
   end
   
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to post_path(@post.id)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
@@ -38,6 +44,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:user_id, :place_category_id, :genre_category_id, :gourme_name, :shop_name, :price, :content, :image_id)
+    params.require(:post).permit(:user_id, :place_category_id, :genre_category_id, :gourme_name, :shop_name, :price, :content, :image)
   end
 end

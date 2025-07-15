@@ -5,19 +5,21 @@ class CommentsController < ApplicationController
 
     def create
         post = Post.find(params[:post_id])
-        comment = current_user.comments.new(comment_params)
-        comment.post_id = post.id
-        if comment.save
+        @comment = current_user.comments.new(comment_params)
+        @comment.post_id = post.id
+        if @comment.save
             redirect_to post_path(post)
         else
-            redirect_to post_path(post), alert: 'コメントの投稿に失敗しました'
+            @post = Post.find(params[:post_id])
+            @comments = @post.comments.page(params[:page]).per(7).reverse_order
+            render 'posts/show', status: :unprocessable_entity
         end
     end
 
     def destroy
         post = @comment.post
         @comment.destroy
-        redirect_to post_path(post), 
+        redirect_to post_path(post)
     end
 
     private
