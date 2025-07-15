@@ -15,6 +15,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page]).reverse_order
+    @posts = Post.includes(:place_category, :genre_category)
+    if params[:place_category_id].present?
+      @posts = @posts.where(place_category_id: params[:place_category_id])
+    end
+    if params[:genre_category_id].present?
+      @posts = @posts.where(genre_category_id: params[:genre_category_id])
+    end
+    @posts = @posts.page(params[:page]).reverse_order.per(10)
   end
 
   def show
