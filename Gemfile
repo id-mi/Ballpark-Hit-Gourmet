@@ -75,3 +75,5 @@ gem "ffi", "~> 1.17"
 gem 'devise'
 
 gem 'kaminari'
+
+gem 'enum_help'

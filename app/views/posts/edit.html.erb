@@ -1,4 +1,4 @@
-<h1>ポストの編集</h1>
+<h1>投稿の編集</h1>
 <% if @post.errors.any? %>
   <ul>
     <% @post.errors.full_messages.each do |message| %>
@@ -17,5 +17,8 @@
     <%= f.text_area :content %>
   <h4>画像</h4>
     <%= f.file_field :image %><br>
+  <div class="form-group">
+    <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25 mb-3"} %>
+  </div>
   <%= f.submit "保存する" %>    
 <% end %>

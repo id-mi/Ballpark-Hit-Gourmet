@@ -14,6 +14,8 @@ class Post < ApplicationRecord
   validates :content, presence: { message: "を入力してください"}, length: { maximum: 150 }
   validates :image, presence: { message: "を選択してください"}
 
+  enum status: { published: 0, draft: 1 }
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

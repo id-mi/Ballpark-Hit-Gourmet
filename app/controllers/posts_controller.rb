@@ -14,8 +14,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page]).reverse_order
-    @posts = Post.includes(:place_category, :genre_category)
+    @posts = Post.published.includes(:place_category, :genre_category)
     if params[:place_category_id].present?
       @posts = @posts.where(place_category_id: params[:place_category_id])
     end
@@ -50,8 +49,12 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def confirm
+    @posts = current_user.posts.draft.page(params[:page]).reverse_order
+  end
+
   private
   def post_params
-    params.require(:post).permit(:user_id, :place_category_id, :genre_category_id, :gourme_name, :shop_name, :price, :content, :image)
+    params.require(:post).permit(:user_id, :place_category_id, :genre_category_id, :gourme_name, :shop_name, :price, :content, :image, :status)
   end
 end
