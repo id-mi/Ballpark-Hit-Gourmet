@@ -7,6 +7,15 @@
   </ul>
 <% end %>
 <%= form_with model: @post, local: true do |f| %>
+  <div class="field">
+    <%= f.label :place_category_id, "球場名" %><br>
+    <%= f.collection_select :place_category_id, PlaceCategory.all, :id, :name, prompt: "選択してください" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :genre_category_id, "ジャンル" %><br>
+    <%= f.collection_select :genre_category_id, GenreCategory.all, :id, :name, prompt: "選択してください" %>
+  </div>
   <h4>グルメ名</h4>
     <%= f.text_field :gourme_name %>
   <h4>店名</h4>

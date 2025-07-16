@@ -23,21 +23,6 @@
         <div><%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "text-white nav-link" %></div>
       </header>
     <% end %>
-    
-    <% if notice %>
-      <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%= notice %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
-    
-    <% if alert %>
-      <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%= alert %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
-    
     <%= yield %>
   </body>
 </html>
