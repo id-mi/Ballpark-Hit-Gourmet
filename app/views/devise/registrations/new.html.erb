@@ -5,19 +5,19 @@
 
 <!-- ユーザー名 -->
   <div class="field">
-    <%= f.label :名前 %><br />
+    <%= f.label :name %><br />
     <%= f.text_field :name, autofocus: true %>
   </div>
 
 <!-- メールアドレス -->
   <div class="field">
-    <%= f.label :メールアドレス %><br />
+    <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
 <!-- パスワード -->
   <div class="field">
-    <%= f.label :パスワード %>
+    <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
@@ -26,14 +26,15 @@
 
 <!-- パスワード（確認用） -->
   <div class="field">
-    <%= f.label :パスワード（確認用） %><br />
+    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
 <!-- 登録ボタン -->
   <div class="actions">
-    <%= f.submit "新規登録" %>
+    <%= f.submit "登録する" %>
   </div>
 <% end %>
 
+<!-- ログインページへのリンク -->
 <%= render "devise/shared/links" %>
