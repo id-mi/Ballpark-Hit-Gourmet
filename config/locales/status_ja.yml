@@ -4,3 +4,34 @@ ja:
       status:
         published: '投稿する'
         draft: '下書き保存'
+
+  activerecord:
+    attributes:
+      post:
+        place_category_id: 球場名
+        genre_category_id: ジャンル
+        gourme_name: グルメ名
+        shop_name: 店舗名
+        price: 価格（税込）
+        content: 感想
+        image: 画像
+
+    errors:
+      models:
+        post:
+          attributes:
+            place_category_id:
+              blank: "を選択してください"
+            genre_category_id:
+              blank: "を選択してください"
+            gourme_name:
+              blank: "を入力してください"
+            shop_name:
+              blank: "を入力してください"
+            price:
+              blank: "を入力してください"
+            content:
+              blank: "を入力してください"
+              too_long: "は%{150}文字以内で入力してください"
+            image:
+              blank: "を選択してください"
