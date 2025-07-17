@@ -32,6 +32,6 @@ ja:
               blank: "を入力してください"
             content:
               blank: "を入力してください"
-              too_long: "は%{150}文字以内で入力してください"
+              too_long: "は%{count}文字以内で入力してください"
             image:
               blank: "を選択してください"
