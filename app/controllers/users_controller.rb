@@ -5,7 +5,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.page(params[:page]).per(8).reverse_order
+    if current_user == @user
+      @posts = @user.posts.page(params[:page]).per(8).reverse_order
+    else
+      @posts = @user.posts.published.page(params[:page]).per(8).reverse_order
+    end
     @following_users = @user.following_user
     @follower_users = @user.follower_user
   end
