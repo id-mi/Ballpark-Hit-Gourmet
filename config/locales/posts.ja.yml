@@ -21,17 +21,17 @@ ja:
         post:
           attributes:
             place_category_id:
-              blank: "を選択してください"
+              blank: "%{attribute}を選択してください"
             genre_category_id:
-              blank: "を選択してください"
+              blank: "%{attribute}を選択してください"
             gourme_name:
-              blank: "を入力してください"
+              blank: "%{attribute}を入力してください"
             shop_name:
-              blank: "を入力してください"
+              blank: "%{attribute}を入力してください"
             price:
-              blank: "を入力してください"
+              blank: "%{attribute}を入力してください"
             content:
-              blank: "を入力してください"
-              too_long: "は%{count}文字以内で入力してください"
+              blank: "%{attribute}を入力してください"
+              too_long: "%{attribute}は%{count}文字以内で入力してください"
             image:
-              blank: "を選択してください"
+              blank: "%{attribute}を選択してください"
