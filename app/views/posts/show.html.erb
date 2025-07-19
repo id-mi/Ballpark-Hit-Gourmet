@@ -8,11 +8,16 @@
   </ul>
 <% end %>
 
-<!-- 投稿詳細 -->
+<!-- 詳細情報 -->
+<h2>ユーザー名</h2>
 <p class="caption"><%= @post.user.name %></p>
+<h2>球場名</h2>
+<p><%= @post.place_category.name %></p>
+<h2>ジャンル</h2>
+<p><%= @post.genre_category.name %></p>
 <h2>グルメ名</h2>
 <p><%= @post.gourme_name %></p>
-<h2>店名</h2>
+<h2>店舗名</h2>
 <p><%= @post.shop_name %></p>
 <h2>価格（税込）</h2>
 <p><%= @post.price %>円</p>
