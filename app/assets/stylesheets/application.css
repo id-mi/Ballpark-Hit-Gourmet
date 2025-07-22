@@ -13,3 +13,193 @@
  *= require_tree .
  *= require_self
  */
+
+/* --- Baseball Theme Base Styles --- */
+body {
+  background: linear-gradient(135deg, #e9f5e1 0%, #f7fafc 100%);
+  font-family: 'Segoe UI', 'Meiryo', 'Hiragino Kaku Gothic ProN', Arial, sans-serif;
+  color: #1a2a3a;
+  margin: 0;
+  padding: 0;
+  padding-top: 70px; /* ヘッダー高さ分の余白を追加 */
+}
+
+header, .navbar, .main-header {
+  background: #23408e; /* ネイビー */
+  color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+}
+
+footer {
+  background: #23408e;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #d32f2f; /* 赤（野球ボールの縫い目イメージ） */
+  font-family: 'Segoe UI', 'Meiryo', Arial, sans-serif;
+  margin-top: 1.5em;
+}
+
+a {
+  color: #23408e;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+a:hover {
+  color: #388e3c; /* グリーン */
+  text-decoration: underline;
+}
+
+button, input[type="submit"], .btn {
+  background: #388e3c; /* グリーン */
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 0.5em 1.5em;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(56,142,60,0.08);
+  margin: 0.2em 0;
+  transition: background 0.2s;
+}
+button:hover, input[type="submit"]:hover, .btn:hover {
+  background: #23408e;
+}
+
+.card, .panel, .box {
+  background: #fff;
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.5em;
+  margin: 1em 0;
+}
+
+/* 野球ボール風のアクセント */
+.baseball-accent {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  background: #fff;
+  border: 2px solid #d32f2f;
+  border-radius: 50%;
+  position: relative;
+  margin-right: 0.5em;
+}
+.baseball-accent::before, .baseball-accent::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 2px;
+  background: #d32f2f;
+  top: 50%;
+  left: 20%;
+  border-radius: 2px;
+}
+.baseball-accent::before {
+  transform: rotate(30deg);
+}
+.baseball-accent::after {
+  transform: rotate(-30deg);
+}
+
+/* テーブル（スコアボード風） */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #f5f5f5;
+  margin: 1em 0;
+}
+th, td {
+  border: 1.5px solid #23408e;
+  padding: 0.7em 1em;
+  text-align: center;
+}
+th {
+  background: #23408e;
+  color: #fff;
+}
+
+/* フォーム */
+input, textarea, select {
+  border: 1.5px solid #388e3c;
+  border-radius: 8px;
+  padding: 0.5em;
+  margin: 0.3em 0;
+  font-size: 1em;
+}
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 2px #f8bbd0;
+}
+
+/* --- Header Layout & Fixed --- */
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header-logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  margin-right: 2em;
+}
+.header-links {
+  display: flex;
+  gap: 1.2em;
+}
+.header-links .nav-link {
+  padding: 0.3em 0.8em;
+  border-radius: 20px;
+  transition: background 0.2s, color 0.2s;
+}
+.header-links .nav-link:hover {
+  background: #fff;
+  color: #23408e;
+}
+
+@media (max-width: 600px) {
+  header, .navbar, .main-header, footer {
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+  }
+  .card, .panel, .box {
+    padding: 1em;
+  }
+  .header-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5em 0;
+  }
+  .header-links {
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-top: 0.5em;
+  }
+  body {
+    padding-top: 100px;
+  }
+}
+
+/* --- End Header Layout & Fixed --- */
+
+/* --- End Baseball Theme Base Styles --- */
