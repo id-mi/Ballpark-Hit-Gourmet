@@ -1,36 +1,47 @@
-<h1>新規投稿</h1>
-<!-- エラー表示 -->
-<% if @post.errors.any? %>
-  <ul>
-    <% @post.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
-
-<!-- 投稿フォーム -->
-<%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
-  <div class="field">
-    <%= f.label :place_category_id, "球場名" %><br>
-    <%= f.collection_select :place_category_id, PlaceCategory.all, :id, :name, prompt: "選択してください" %>
-  </div>
-  <div class="field">
-    <%= f.label :genre_category_id, "ジャンル" %><br>
-    <%= f.collection_select :genre_category_id, GenreCategory.all, :id, :name, prompt: "選択してください" %>
-  </div>
-  <h4>グルメ名</h4>
-    <%= f.text_field :gourme_name %>
-  <h4>店舗名</h4>
-    <%= f.text_field :shop_name %>  
-  <h4>価格（税込）</h4>
-    <%= f.text_field :price %> 円
-  <h4>感想</h4>  
-    <%= f.text_area :content %>
-  <h4>画像</h4>
-    <%= f.file_field :image %>
-    <p></p>
-  <div class="form-group">
-    <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25 mb-3"} %>
-  </div>
-  <%= f.submit "投稿する" %>
-<% end %>
+<div class="form-wrap">
+  <h1>新規投稿</h1>
+  <!-- エラー表示 -->
+  <% if @post.errors.any? %>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
+    <div class="form-group">
+      <%= f.label :place_category_id, "球場名", class: "form-label-red" %>
+      <%= f.collection_select :place_category_id, PlaceCategory.all, :id, :name, prompt: "選択してください", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :genre_category_id, "ジャンル", class: "form-label-red" %>
+      <%= f.collection_select :genre_category_id, GenreCategory.all, :id, :name, prompt: "選択してください", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :gourme_name, "グルメ名", class: "form-label-red" %>
+      <%= f.text_field :gourme_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :shop_name, "店舗名", class: "form-label-red" %>
+      <%= f.text_field :shop_name, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :price, "価格（税込）", class: "form-label-red" %>
+      <%= f.text_field :price, class: "form-control price-input", data: { behavior: "comma-separate" }, autocomplete: "off" %> 円
+    </div>
+    <div class="form-group">
+      <%= f.label :content, "感想", class: "form-label-red" %>
+      <%= f.text_area :content, class: "form-control form-textarea-lg" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :image, "画像", class: "form-label-red" %>
+      <%= f.file_field :image, class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "form-controlcustom-select w-25 mb-3"} %>
+    </div>
+    <div class="form-group text-center">
+      <%= f.submit "投稿する", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

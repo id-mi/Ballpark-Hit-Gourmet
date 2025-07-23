@@ -1,11 +1,12 @@
-<h2>ログイン</h2>
-
-<%= form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <% if flash[:alert].present? %>
-  <div class="error-message">
-    <%= flash[:alert] %>
-  </div>
-  <% end %>
+<div class="auth-center">
+  <div class="auth-form-box">
+    <h2>ログイン</h2>
+    <%= form_with(model: resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <% if flash[:alert].present? %>
+      <div class="error-message">
+        <%= flash[:alert] %>
+      </div>
+      <% end %>
 
 <!-- メールアドレス -->
   <div class="field">
@@ -33,4 +34,6 @@
 <% end %>
 
 <!-- 新規登録ページへのリンク -->
-<%= render "devise/shared/links" %>
+<div class="auth-link-box">
+  <%= render "devise/shared/links" %>
+</div>

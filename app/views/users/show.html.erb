@@ -21,26 +21,32 @@
       <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-success" %>
     <% end %>
   <% end %>
-    <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
-    <h4 class="ml-3 mb-3 card w-100 profile"><%= @user.profile %></h4>
+    <div class="profile-bubble-wrap">
+      <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
+      <h4 class="profile-bubble"><%= @user.profile %></h4>
+    </div>
   </div>
-  <div class="row mt-5">
+  <div class="mypage-follow-row">
     <%= link_to follows_user_path(@user) do %>
       <h6>フォロー<%= @following_users.count %></h6>
-    <% end %>  
+    <% end %>
     <%= link_to followers_user_path(@user) do %>
       <h6>フォロワー<%= @follower_users.count %></h6>
     <% end %>
   </div>
-    <div class="row mt-5 index-left w-100">
+    <div class="posts-grid">
       <% @posts.each do |post| %>
-        <div class="one-post col-sm-3 mb-3">
-          <%= link_to post_path(post) do %>
-            <%= attachment_image_tag post, :image, format: 'jpeg', size: '200x133' %>
-            <p class="caption mb-0"><%= post.place_category.name %></p>
-            <p class="caption"><%= "#{post.comments.count} コメント" %></p>
-          <% end %>
-        </div>
+        <%= link_to post_path(post), class: "post-card post-card-link mypage-post-card" do %>
+          <div class="post-card-image">
+            <%= attachment_image_tag post, :image, format: 'jpeg', size: '100x100' %>
+          </div>
+          <div class="post-card-body">
+            <p class="caption"><%= post.user.name %></p>
+            <p>球場名：<%= post.place_category.name %></p>
+            <p>ジャンル：<%= post.genre_category.name %></p>
+            <p class="gourme-name"><%= post.gourme_name %></p>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <%= paginate @posts %>

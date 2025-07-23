@@ -1,29 +1,26 @@
 <%= form_with method: :get, local: true do |f| %>
-    <!-- 球場名 -->
+  <div class="posts-filter">
     <div>
-      <%= label_tag :place_category_id, "球場名" %><br>
+      <%= label_tag :place_category_id, "球場名" %>
       <%= select_tag :place_category_id,
           options_from_collection_for_select(PlaceCategory.all, :id, :name, params[:place_category_id]),
           include_blank: "すべて" %>
     </div>
-
-    <!-- ジャンル -->
     <div>
-      <%= label_tag :genre_category_id, "ジャンル" %><br>
+      <%= label_tag :genre_category_id, "ジャンル" %>
       <%= select_tag :genre_category_id,
           options_from_collection_for_select(GenreCategory.all, :id, :name, params[:genre_category_id]),
           include_blank: "すべて" %>
-    </div>  
-
-    <!-- 検索ボタン -->
+    </div>
     <div>
       <%= submit_tag "検索", class: "btn btn-primary" %>
     </div>
+  </div>
 <% end %>
 <% if posts.present? %>
   <div class="posts-grid">
     <% posts.each do |post| %>
-      <div class="post-card">
+      <%= link_to post_path(post.id), class: "post-card post-card-link" do %>
         <div class="post-card-image">
           <%= attachment_image_tag post, :image, format: 'jpeg', size: "100x100" %>
         </div>
@@ -31,9 +28,9 @@
           <p class="caption"><%= post.user.name %></p>
           <p>球場名：<%= post.place_category.name %></p>
           <p>ジャンル：<%= post.genre_category.name %></p>
-          <p class="gourme-name"><%= link_to post.gourme_name, post_path(post.id) %></p>
+          <p class="gourme-name"><%= post.gourme_name %></p>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 

@@ -14,7 +14,8 @@
  *= require_self
  */
 
-/* --- Modern & Clean Baseball Theme --- */
+/* --- Baseball Responsive & Modern Theme --- */
+
 body {
   background: linear-gradient(135deg, #e9f5e1 0%, #f7fafc 100%);
   font-family: 'Segoe UI', 'Meiryo', 'Hiragino Kaku Gothic ProN', Arial, sans-serif;
@@ -24,6 +25,17 @@ body {
   padding-top: 80px;
   font-size: 1.08rem;
   line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ベースボール感のあるストライプ背景 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  background: repeating-linear-gradient(135deg, #e9f5e1 0 20px, #d0e6c9 20px 40px);
+  opacity: 0.25;
 }
 
 header, .navbar, .main-header, .fixed-header {
@@ -38,26 +50,25 @@ header, .navbar, .main-header, .fixed-header {
 }
 
 .header-logo {
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 900;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   color: #fff;
-  text-shadow: 0 2px 8px #23408e99, 0 0 2px #23408e, 0 0 1px #fff;
-  filter: brightness(1.2) contrast(1.2);
+  text-shadow: 0 2px 12px #23408e, 0 0 2px #fff, 0 0 1px #fff;
+  filter: brightness(1.1) contrast(1.5);
   display: flex;
   align-items: center;
 }
-
 .header-logo::before {
   content: '';
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
-  background: url('/assets/no_image.svg') no-repeat center/contain;
+  background: url('/assets/no_image.svg') no-repeat center/contain, radial-gradient(circle at 60% 40%, #fff 60%, #d32f2f 100%);
   margin-right: 0.5em;
   border-radius: 50%;
-  border: 2px solid #d32f2f;
-  background-color: #fff;
+  border: 2.5px solid #d32f2f;
+  box-shadow: 0 0 0 4px #fff7, 0 2px 8px #23408e33;
 }
 
 .header-links {
@@ -99,8 +110,8 @@ button, input[type="submit"], .btn {
   color: #fff;
   border: none;
   border-radius: 30px;
-  padding: 0.6em 1.2em;
-  min-width: 110px;
+  padding: 0.5em 1em;
+  min-width: unset;
   font-size: 1.08rem;
   font-weight: bold;
   cursor: pointer;
@@ -218,7 +229,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* 投稿一覧グリッド表示・カードデザイン */
+/* 投稿一覧グリッド表示・カードデザイン（ベースボール感・モダン） */
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -227,32 +238,45 @@ a:hover {
   align-items: stretch;
 }
 .post-card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px #23408e18, 0 1.5px 0 #388e3c22;
+  background: linear-gradient(135deg, #fff 80%, #e9f5e1 100%);
+  border-radius: 22px 22px 18px 18px;
+  box-shadow: 0 6px 32px #23408e22, 0 2px 0 #388e3c22;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1.5em 1.2em 1.2em 1.2em;
+  padding: 1.7em 1.2em 1.2em 1.2em;
   transition: box-shadow 0.2s, transform 0.15s;
-  border: 1.5px solid #e0e0e0;
+  border: 2.5px solid #388e3c33;
   min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+.post-card::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 12px;
+  background: repeating-linear-gradient(90deg, #d32f2f 0 8px, transparent 8px 16px);
+  opacity: 0.18;
 }
 .post-card:hover {
-  box-shadow: 0 8px 32px #388e3c22, 0 2px 0 #d32f2f22;
-  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 36px #388e3c33, 0 4px 0 #d32f2f22;
+  transform: translateY(-6px) scale(1.04);
+  background: #f7fafc;
+  cursor: pointer;
 }
 .post-card-image {
   width: 110px;
   height: 110px;
   border-radius: 50%;
   overflow: hidden;
-  background: #f5f5f5;
+  background: radial-gradient(circle at 60% 40%, #fff 60%, #e9f5e1 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 1em;
-  border: 2px solid #388e3c33;
+  border: 3px solid #23408e;
+  box-shadow: 0 2px 8px #23408e22;
 }
 .post-card-image img {
   width: 100%;
@@ -269,17 +293,428 @@ a:hover {
   color: #23408e;
   margin-bottom: 0.3em;
 }
-.gourme-name a {
-  font-size: 1.15em;
-  font-weight: 800;
+.post-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  border-radius: 22px 22px 18px 18px;
+  transition: box-shadow 0.2s, transform 0.15s, background 0.2s;
+}
+.post-card-link:hover, .post-card-link:focus {
+  box-shadow: 0 16px 48px #388e3c44, 0 6px 0 #d32f2f22;
+  transform: translateY(-8px) scale(1.05);
+  background: linear-gradient(135deg, #e9f5e1 80%, #fff 100%);
+  cursor: pointer;
+  border: 2.5px solid #d32f2f;
+}
+.gourme-name {
+  font-size: 1.18em;
+  font-weight: 900;
   color: #d32f2f;
   letter-spacing: 0.04em;
   text-shadow: 0 2px 8px #d32f2f11;
   transition: color 0.2s, text-shadow 0.2s;
+  margin-bottom: 0.5em;
 }
-.gourme-name a:hover {
+.gourme-name:hover {
   color: #388e3c;
   text-shadow: 0 2px 8px #388e3c22;
+}
+
+/* 投稿詳細ページ モダン＆ベースボールカード風 */
+.post-detail-card {
+  background: linear-gradient(135deg, #fff 80%, #e9f5e1 100%);
+  border-radius: 24px 24px 20px 20px;
+  box-shadow: 0 8px 36px #23408e22, 0 2px 0 #388e3c22;
+  max-width: 540px;
+  margin: 2.5em auto;
+  padding: 2.5em 2em 2em 2em;
+  border: 3px solid #388e3c33;
+  position: relative;
+  overflow: hidden;
+}
+.post-detail-card::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 14px;
+  background: repeating-linear-gradient(90deg, #d32f2f 0 10px, transparent 10px 20px);
+  opacity: 0.18;
+}
+.post-detail-card h1, .post-detail-card h2 {
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  color: #23408e;
+  font-weight: 900;
+}
+.post-detail-card img {
+  display: block;
+  margin: 1.5em auto;
+  border-radius: 50%;
+  border: 3px solid #23408e;
+  box-shadow: 0 2px 8px #23408e22;
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* トップ・認証画面中央寄せ・キャッチコピー・ボタンインライン化 */
+.top-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+.top-inner {
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #23408e18;
+  padding: 2.5em 2em 2em 2em;
+  max-width: 420px;
+  margin: 0 auto;
+}
+/* トップキャッチコピー一行化 */
+.sub-title {
+  font-size: 1.1em;
+  color: #388e3c;
+  margin-bottom: 0.7em;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sub-title-main {
+  font-size: 1.18em;
+  color: #23408e;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  background: linear-gradient(90deg, #fff700 10%, #388e3c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  margin: 0 0.3em;
+}
+.top-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.2em;
+  margin-top: 1.5em;
+}
+.top-btn {
+  display: inline-block;
+  font-size: 1.1em;
+  padding: 0.5em 1.5em;
+  min-width: unset;
+  border-radius: 30px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px #388e3c22;
+}
+.auth-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+.auth-center form {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px #23408e18;
+  padding: 2.5em 2em 2em 2em;
+  min-width: 320px;
+  max-width: 400px;
+}
+.auth-center h2 {
+  margin-bottom: 1.2em;
+}
+
+/* 認証フォームのリンク中央寄せ・枠内配置 */
+.auth-form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.auth-form-box form, .auth-form-box h2, .auth-link-box {
+  width: 100%;
+  text-align: center;
+}
+.auth-link-box {
+  margin-top: 1.2em;
+}
+
+/* ヘッダーをページ最上部に */
+header.main-header.fixed-header {
+  top: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+  margin-top: 0 !important;
+}
+body {
+  margin-top: 0 !important;
+}
+
+/* ヘッダーロゴをおしゃれな白色に */
+.header-logo {
+  background: none !important;
+  color: #fff !important;
+  text-shadow: 0 2px 12px #fff, 0 0 2px #23408e, 0 0 1px #fff;
+  filter: brightness(1.2) contrast(1.2);
+}
+
+/* 投稿一覧のセレクト同サイズ・画像中央 */
+.posts-filter {
+  display: flex;
+  gap: 1em;
+  margin-bottom: 1.5em;
+  justify-content: center;
+}
+.posts-filter select {
+  min-width: 140px;
+  max-width: 200px;
+  padding: 0.5em 1em;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1.5px solid #388e3c;
+  background: #f7fafc;
+}
+.posts-filter label {
+  color: #d32f2f;
+  font-weight: bold;
+  margin-right: 0.5em;
+}
+.post-card-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 新規投稿ページの球場名・ジャンル名ラベル赤字 */
+.form-label-red, label[for="post_place_category_id"], label[for="post_genre_category_id"] {
+  color: #d32f2f !important;
+  font-weight: bold;
+}
+
+/* 新規投稿ページ おしゃれな配置・入力欄統一 */
+.form-wrap {
+  max-width: 340px;
+  margin: 2.5em auto;
+  background: linear-gradient(135deg, #f7fafc 80%, #e9f5e1 100%);
+  border-radius: 18px;
+  box-shadow: 0 6px 32px #23408e22;
+  padding: 2em 1.2em 1.5em 1.2em;
+  border: 2px solid #388e3c33;
+}
+.form-group {
+  margin-bottom: 1.1em;
+}
+.form-label-red {
+  color: #d32f2f !important;
+  font-weight: bold;
+  margin-bottom: 0.3em;
+}
+.form-control {
+  font-size: 0.98em;
+  padding: 0.5em 0.8em;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 1.5px solid #388e3c;
+  font-size: 1em;
+  background: #f7fafc;
+  margin-bottom: 0.2em;
+}
+.form-textarea-lg {
+  min-height: 80px;
+  font-size: 1em;
+  resize: vertical;
+}
+
+/* 投稿詳細ページ コメント欄・リスト見やすく */
+.post-detail-card .comments {
+  margin: 2em 0 0 0;
+  padding: 1.5em 1em 1em 1em;
+  background: #f7fafc;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #23408e11;
+  max-width: 98%;
+}
+.post-detail-card .comments h2 {
+  margin-top: 0;
+  color: #388e3c;
+}
+.comments-index {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #23408e11;
+  padding: 0.7em 1em;
+  margin-bottom: 0.7em;
+  word-break: break-all;
+}
+
+/* マイページのフォロー・フォロワー横並び */
+.mypage-follow-row {
+  display: flex;
+  gap: 2em;
+  justify-content: center;
+  margin-bottom: 1.5em;
+}
+.mypage-follow-row h6 {
+  margin: 0 0.5em;
+  font-size: 1.1em;
+  color: #23408e;
+  font-weight: bold;
+}
+
+/* マイページ投稿一覧の項目統一 */
+.mypage-post-card .post-card-body p {
+  margin: 0.2em 0;
+}
+
+/* フォロワー/フォロー一覧 ユーザーをインライン要素に */
+.follow-users-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2em;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+.follow-users-inline .one-post {
+  display: inline-block;
+  min-width: 180px;
+  max-width: 220px;
+  vertical-align: top;
+}
+
+/* ユーザー詳細ページ ひとことをインライン要素に */
+.profile-inline {
+  display: inline-block;
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 0.7em 1.2em;
+  font-size: 1.08em;
+  color: #23408e;
+  margin-bottom: 1.2em;
+  box-shadow: 0 1px 4px #23408e11;
+}
+
+/* 投稿詳細ページ おしゃれな中央寄せ・レイアウト調整 */
+.post-detail-outer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 90vh;
+  background: none;
+}
+.post-detail-card {
+  width: 100%;
+  max-width: 540px;
+  margin: 2.5em auto;
+  padding: 2.5em 2em 2em 2em;
+  border-radius: 24px 24px 20px 20px;
+  background: linear-gradient(135deg, #fff 80%, #e9f5e1 100%);
+  box-shadow: 0 8px 36px #23408e22, 0 2px 0 #388e3c22;
+  border: 3px solid #388e3c33;
+  position: relative;
+  overflow: hidden;
+}
+.post-detail-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  margin-bottom: 1.5em;
+}
+.post-detail-image {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post-detail-image img {
+  border-radius: 50%;
+  border: 3px solid #23408e;
+  box-shadow: 0 2px 8px #23408e22;
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+}
+.post-detail-info {
+  flex: 1;
+  display: table;
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+.post-detail-info-row {
+  display: table-row;
+}
+.post-detail-info-label, .post-detail-info-value {
+  display: table-cell;
+  padding: 0.3em 0.5em 0.3em 0;
+  vertical-align: middle;
+}
+.post-detail-info-label {
+  color: #23408e;
+  font-weight: bold;
+  min-width: 80px;
+  width: 1px;
+  white-space: nowrap;
+}
+.post-detail-info-value {
+  color: #1a2a3a;
+}
+.post-detail-info p {
+  margin: 0.2em 0;
+  font-size: 1.05em;
+}
+.post-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1em 1.5em;
+  margin-bottom: 1.5em;
+  justify-content: space-between;
+}
+.post-detail-editlinks, .post-detail-backlink {
+  display: inline-block;
+}
+@media (max-width: 700px) {
+  .post-detail-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+  .post-detail-image img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+/* 投稿詳細ページ コメント入力欄を少し小さく */
+.post-detail-card .comments textarea.form-control.form-textarea-lg {
+  min-height: 48px;
+  font-size: 0.98em;
+}
+
+/* レスポンシブ強化 */
+@media (max-width: 900px) {
+  .top-inner, .auth-center form, .post-detail-card {
+    max-width: 98vw;
+    padding: 1.5em 0.5em;
+  }
+  .posts-grid {
+    gap: 1.2em 0.7em;
+  }
 }
 @media (max-width: 600px) {
   .posts-grid {
@@ -294,6 +729,347 @@ a:hover {
     width: 80px;
     height: 80px;
   }
+  .post-detail-card {
+    padding: 1.2em 0.3em;
+  }
+  .top-inner {
+    padding: 1.2em 0.3em;
+  }
 }
 
-/* --- End Modern & Clean Baseball Theme --- */
+/* --- End Baseball Responsive & Modern Theme --- */
+
+/* ヘッダーのメニュー右端寄せ */
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+.header-logo {
+  margin-right: 2em;
+}
+.header-links {
+  display: flex;
+  gap: 1.5em;
+  margin-left: auto;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* 2段ヘッダー用デザイン */
+.header-2row {
+  background: linear-gradient(90deg, #23408e 80%, #388e3c 100%);
+  box-shadow: 0 4px 16px rgba(35,64,142,0.13);
+  border-bottom: 3px solid #d32f2f;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+}
+.header-row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  padding: 0.3em 2vw;
+}
+.header-row-title {
+  justify-content: flex-start;
+  min-height: 2.5em;
+}
+.header-row-menu {
+  justify-content: flex-end;
+  min-height: 2.5em;
+  background: none;
+}
+.header-menu-nav {
+  width: 100%;
+}
+.header-menu-list {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7em;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.header-menu-btn {
+  display: inline-block;
+  background: #fff;
+  color: #23408e;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 0.35em 1.1em;
+  font-size: 1.05em;
+  border: 1.5px solid #23408e;
+  box-shadow: 0 1px 4px #23408e11;
+  text-decoration: none;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  margin: 0 0.1em;
+}
+.header-menu-btn:hover, .header-menu-btn:focus {
+  background: #388e3c;
+  color: #fff;
+  border-color: #388e3c;
+  box-shadow: 0 2px 8px #388e3c22;
+}
+
+/* 新規投稿ページ フォーム幅・雰囲気調整・金額カンマ対応 */
+.form-wrap {
+  max-width: 340px;
+  margin: 2.5em auto;
+  background: linear-gradient(135deg, #f7fafc 80%, #e9f5e1 100%);
+  border-radius: 18px;
+  box-shadow: 0 6px 32px #23408e22;
+  padding: 1.2em 1.2em 1em 1.2em;
+  border: 2px solid #388e3c33;
+}
+.form-group {
+  margin-bottom: 1.1em;
+}
+.form-control {
+  font-size: 0.98em;
+  padding: 0.5em 0.8em;
+  border-radius: 8px;
+  border: 1.5px solid #388e3c;
+  background: #f7fafc;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin-bottom: 0.2em;
+}
+.form-control[type="number"], .form-control.price-input {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  letter-spacing: 0.04em;
+}
+.form-textarea-lg {
+  min-height: 80px;
+  font-size: 1em;
+}
+
+/* 投稿詳細ページ 洗練・見やすさ強化 */
+.post-detail-card {
+  width: 100%;
+  max-width: 540px;
+  margin: 2.5em auto;
+  padding: 2.2em 1.5em 1.5em 1.5em;
+  border-radius: 28px 28px 22px 22px;
+  background: linear-gradient(135deg, #fff 85%, #e9f5e1 100%);
+  box-shadow: 0 12px 48px #23408e22, 0 2px 0 #388e3c22;
+  border: 2.5px solid #388e3c33;
+  position: relative;
+  overflow: hidden;
+}
+.post-detail-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 2em;
+  margin-bottom: 1.5em;
+}
+.post-detail-image {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.post-detail-image img {
+  border-radius: 50%;
+  border: 3px solid #23408e;
+  box-shadow: 0 2px 12px #23408e22;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  background: #fff;
+}
+.post-detail-info {
+  flex: 1;
+  display: table;
+  width: 100%;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  background: #f7fafc;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px #23408e11;
+  padding: 1em 0.7em;
+}
+.post-detail-info-row {
+  display: table-row;
+}
+.post-detail-info-label, .post-detail-info-value {
+  display: table-cell;
+  padding: 0.3em 0.5em 0.3em 0;
+  vertical-align: middle;
+}
+.post-detail-info-label {
+  color: #23408e;
+  font-weight: bold;
+  min-width: 80px;
+  width: 1px;
+  white-space: nowrap;
+  font-size: 1.04em;
+}
+.post-detail-info-value {
+  color: #1a2a3a;
+  font-size: 1.04em;
+}
+.post-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1em 1.5em;
+  margin-bottom: 1.5em;
+  justify-content: space-between;
+}
+.post-detail-editlinks, .post-detail-backlink {
+  display: inline-block;
+}
+.post-detail-card .comments {
+  margin: 2em 0 0 0;
+  padding: 1.2em 1em 1em 1em;
+  background: #f7fafc;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px #23408e11;
+  max-width: 98%;
+}
+.post-detail-card .comments h2 {
+  margin-top: 0;
+  color: #388e3c;
+}
+.comments-index {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #23408e11;
+  padding: 0.7em 1em;
+  margin-bottom: 0.7em;
+  word-break: break-all;
+}
+@media (max-width: 700px) {
+  .post-detail-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+  }
+  .post-detail-image img {
+    width: 90px;
+    height: 90px;
+  }
+  .form-wrap, .post-detail-card {
+    max-width: 98vw;
+    padding: 1em 0.3em;
+  }
+}
+
+/* ヘッダーとページタイトルの間の余白を詰めて中央寄せ */
+h1, .page-title {
+  margin-top: 2.2em !important;
+  margin-bottom: 1.1em;
+  text-align: center;
+}
+.header-2row + h1, .main-header + h1 {
+  margin-top: 3.2em !important;
+}
+
+/* 新規投稿ページの幅を投稿詳細と同じに */
+.form-wrap {
+  max-width: 540px;
+}
+
+
+/* 投稿詳細ページ アクションボタン等間隔 */
+.post-detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.2em;
+  margin-bottom: 1.5em;
+  justify-content: center;
+}
+.post-detail-editlinks, .post-detail-backlink, #favorite-\31, #favorite-\32, #favorite-\33, #favorite-\34, #favorite-\35, #favorite-\36, #favorite-\37, #favorite-\38, #favorite-\39, [id^="favorite-"] {
+  margin: 0 !important;
+}
+
+/* ユーザーのひとこと欄をアイコンから吹き出し風に */
+.profile-bubble-wrap {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 1.5em;
+  gap: 1em;
+}
+.profile-bubble {
+  position: relative;
+  display: inline-block;
+  background: #f7fafc;
+  border-radius: 16px;
+  padding: 0.9em 1.5em;
+  font-size: 1.08em;
+  color: #23408e;
+  box-shadow: 0 1px 4px #23408e11;
+  min-width: 80px;
+  max-width: 320px;
+  word-break: break-word;
+}
+.profile-bubble::before {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 18px;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 18px solid #f7fafc;
+  filter: drop-shadow(-2px 2px 2px #23408e11);
+}
+@media (max-width: 700px) {
+  .form-wrap, .post-detail-card {
+    max-width: 98vw;
+    padding: 1em 0.3em;
+  }
+  .post-card {
+    max-width: 98vw;
+  }
+  .profile-bubble {
+    max-width: 90vw;
+  }
+}
+
+/* 投稿カードの最大幅・中央寄せ（下書き一覧・ユーザー一覧・マイページ） */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2.2em 1.5em;
+  margin: 2em 0 2.5em 0;
+  align-items: stretch;
+  justify-items: center;
+}
+.post-card {
+  background: linear-gradient(135deg, #fff 80%, #e9f5e1 100%);
+  border-radius: 22px 22px 18px 18px;
+  box-shadow: 0 6px 32px #23408e22, 0 2px 0 #388e3c22;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.7em 1.2em 1.2em 1.2em;
+  transition: box-shadow 0.2s, transform 0.15s;
+  border: 2.5px solid #388e3c33;
+  min-height: 320px;
+  position: relative;
+  overflow: hidden;
+  max-width: 340px;
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 700px) {
+  .form-wrap, .post-detail-card {
+    max-width: 98vw;
+    padding: 1em 0.3em;
+  }
+  .post-card {
+    max-width: 98vw;
+  }
+}
