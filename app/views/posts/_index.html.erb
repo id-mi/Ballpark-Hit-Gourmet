@@ -21,15 +21,21 @@
     </div>
 <% end %>
 <% if posts.present? %>
-  <% posts.each do |post| %>
-    <p class="caption"><%= post.user.name %></p>
-    <p>球場名：<%= post.place_category.name %></p>
-    <p>ジャンル：<%= post.genre_category.name %></p>
-    <!-- グルメ名 -->
-    <p><%= link_to post.gourme_name, post_path(post.id) %></p>
-    <!-- 画像 -->
-    <%= attachment_image_tag post, :image, format: 'jpeg', size: "100x100" %>
-  <% end %>
+  <div class="posts-grid">
+    <% posts.each do |post| %>
+      <div class="post-card">
+        <div class="post-card-image">
+          <%= attachment_image_tag post, :image, format: 'jpeg', size: "100x100" %>
+        </div>
+        <div class="post-card-body">
+          <p class="caption"><%= post.user.name %></p>
+          <p>球場名：<%= post.place_category.name %></p>
+          <p>ジャンル：<%= post.genre_category.name %></p>
+          <p class="gourme-name"><%= link_to post.gourme_name, post_path(post.id) %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
   <%= paginate posts %>
 <% else %>
