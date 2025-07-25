@@ -10,7 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
+ *
+ * @import "bootstrap";    // もしbootstrap使うなら
+ * @import "reset";        // リセットCSS
  *= require_self
  */
 
@@ -398,7 +400,6 @@ a:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
   margin: 0 0.3em;
 }
 .top-btns {
@@ -506,12 +507,12 @@ body {
 
 /* 新規投稿ページ おしゃれな配置・入力欄統一 */
 .form-wrap {
-  max-width: 340px;
+  max-width: 1100px;
   margin: 2.5em auto;
   background: linear-gradient(135deg, #f7fafc 80%, #e9f5e1 100%);
   border-radius: 18px;
   box-shadow: 0 6px 32px #23408e22;
-  padding: 2em 1.2em 1.5em 1.2em;
+  padding: 2em 2em 1.5em 2em;
   border: 2px solid #388e3c33;
 }
 .form-group {
@@ -521,19 +522,33 @@ body {
   color: #d32f2f !important;
   font-weight: bold;
   margin-bottom: 0.3em;
+  display: block;
 }
 .form-control {
-  font-size: 0.98em;
+  font-size: 1em;
   padding: 0.5em 0.8em;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
+  width: 100% !important;
+  max-width: 400px !important;        /* 最大幅を明確にする */
+  min-width: 200px;        /* スマホでも読みやすく */
+  margin: 0 0.5em 1em 0; /* 中央寄せ & 下に少し余白 */
+  display: block;          /* 中央寄せするには block に */
   border-radius: 8px;
   border: 1.5px solid #388e3c;
-  font-size: 1em;
   background: #f7fafc;
-  margin-bottom: 0.2em;
+  box-sizing: border-box;
+}  
+.yen-mark {
+  font-size: 1em;
+  color: #d32f2f;
+  font-weight: bold;
+  margin-left: 0.5em;
 }
+.form-inline-wrap {
+  display: flex;
+  align-items: center;
+  
+}
+
 .form-textarea-lg {
   min-height: 80px;
   font-size: 1em;
@@ -1064,6 +1079,8 @@ h1, .page-title {
   width: 100%;
   box-sizing: border-box;
 }
+
+
 @media (max-width: 700px) {
   .form-wrap, .post-detail-card {
     max-width: 98vw;
@@ -1071,5 +1088,15 @@ h1, .page-title {
   }
   .post-card {
     max-width: 98vw;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .header-row-title {
+    font-size: 14px;
+  }
+  .header-menu-btn {
+    font-size: 13px;
   }
 }

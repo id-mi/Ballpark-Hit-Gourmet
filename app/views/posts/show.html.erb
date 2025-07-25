@@ -36,7 +36,7 @@
         </div>
         <div class="post-detail-info-row">
           <div class="post-detail-info-label">価格（税込）</div>
-          <div class="post-detail-info-value"><%= @post.price %>円</div>
+          <div class="post-detail-info-value"><%= number_with_delimiter(@post.price) %>円</div>
         </div>
         <div class="post-detail-info-row">
           <div class="post-detail-info-label">コメント</div>
@@ -47,11 +47,11 @@
     <div class="post-detail-actions">
       <div id="favorite-<%= @post.id %>">
         <% if @post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(@post), data: { turbo_method: :delete }, class: "favorite-link" do %>
+          <%= link_to post_favorites_path(@post), method: :delete, class: "favorite-link" do %>
             <span class="favorite-icon" style="color: red;">♥</span><span class="favorite-count"><%= @post.favorites.count %></span>
           <% end %>
         <% else %>
-          <%= link_to post_favorites_path(@post), data: { turbo_method: :post }, class: "favorite-link" do %>
+          <%= link_to post_favorites_path(@post), method: :post, class: "favorite-link" do %>
             <span class="favorite-icon" style="color: gray;">♡</span><span class="favorite-count"><%= @post.favorites.count %></span>
           <% end %>
         <% end %>

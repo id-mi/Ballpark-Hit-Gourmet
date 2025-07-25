@@ -27,7 +27,10 @@
     </div>
     <div class="form-group">
       <%= f.label :price, "価格（税込）", class: "form-label-red" %>
-      <%= f.text_field :price, class: "form-control price-input", data: { behavior: "comma-separate" }, autocomplete: "off" %> 円
+      <div class="form-inline-wrap">
+        <%= f.text_field :price, class: "form-control" %>
+        <span class="yen-mark">円</span>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :content, "感想", class: "form-label-red" %>
@@ -38,7 +41,7 @@
       <%= f.file_field :image, class: "form-control" %>
     </div>
     <div class="form-group">
-      <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "form-controlcustom-select w-25 mb-3"} %>
+      <%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k] }, {}, { class: "form-control" } %> 
     </div>
     <div class="form-group text-center">
       <%= f.submit "投稿する", class: "btn btn-primary" %>

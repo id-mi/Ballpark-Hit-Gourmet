@@ -1,3 +1,7 @@
+//= require rails-ujs
+//= require_tree .
+
+
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('input[data-behavior="comma-separate"]').forEach(function(input) {
     input.addEventListener('input', function(e) {
