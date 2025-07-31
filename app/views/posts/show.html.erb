@@ -59,7 +59,7 @@
       <% if @post.user == current_user %>
         <div class="post-detail-editlinks">
           <%= link_to "投稿の編集", edit_post_path(@post.id), class: "btn btn-outline-primary btn-sm" %>
-          <%= link_to "投稿の削除", post_path(@post.id),  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm ml-2" %>
+          <%= button_to "投稿の削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm ml-2" %>
         </div>
       <% end %>
       <div class="post-detail-backlink mt-2">

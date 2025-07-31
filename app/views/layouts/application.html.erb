@@ -8,6 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag('favicon.ico') %>
   </head>
 
   <body>
@@ -19,18 +20,24 @@
           </div>
         </div>
         <div class="header-row header-row-menu">
-          <nav class="header-menu-nav">
-            <ul class="header-menu-list">
-              <li><%= link_to "トップ", root_path, class: "header-menu-btn" %></li>
-              <li><%= link_to "新規投稿", new_post_path, class: "header-menu-btn" %></li>
-              <li><%= link_to "投稿一覧", posts_path, class: "header-menu-btn" %></li>
-              <li><%= link_to "下書き一覧", confirm_posts_path, class: "header-menu-btn" %></li>
-              <li><%= link_to "ユーザー一覧", users_path, class: "header-menu-btn" %></li>
-              <li><%= link_to "マイページ", user_path(current_user.id), class: "header-menu-btn" %></li>
-              <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-menu-btn" %></li>
-            </ul>
-          </nav>
-        </div>
+  <!-- ハンバーガーメニュー（チェックボックス + ラベル） -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle">
+  <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+  <!-- メニュー本体 -->
+  <nav class="header-menu-nav">
+    <ul class="header-menu-list">
+      <li><%= link_to "トップ", root_path, class: "header-menu-btn" %></li>
+      <li><%= link_to "新規投稿", new_post_path, class: "header-menu-btn" %></li>
+      <li><%= link_to "投稿一覧", posts_path, class: "header-menu-btn" %></li>
+      <li><%= link_to "下書き一覧", confirm_posts_path, class: "header-menu-btn" %></li>
+      <li><%= link_to "ユーザー一覧", users_path, class: "header-menu-btn" %></li>
+      <li><%= link_to "マイページ", user_path(current_user.id), class: "header-menu-btn" %></li>
+      <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "header-menu-btn" %></li>
+    </ul>
+  </nav>
+</div>
+
       </header>
     <% end %>
     <%= yield %>

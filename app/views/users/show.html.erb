@@ -1,26 +1,29 @@
 <div class="cover-user-show">
   <div class="container d-flex flex-column align-items-center">
     <div class="row mt-5">
+    <br>
       <% if user_signed_in? && @user == current_user %>
         <h1 class="font-weight-normal">マイページ</h1>
       <% else %>
         <h1 class="font-weight-normal"><%= @user.name %>さんのページ</h1>
       <% end %>
     </div>
-    <% if user_signed_in? && @user == current_user %>
-    <p class="d-flex align-self-end">
-      <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
-    </p>
-    <% end %>
-  <% if current_user != @user %>
-    <% if current_user.following?(@user) %>
+      <% if user_signed_in? && @user == current_user %>
       <p class="d-flex align-self-end">
-        <%= link_to "フォローを解除する", user_relationships_path(@user), data: { turbo_method: :delete }, class: "btn btn-danger" %>
+        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn btn-success" %>
       </p>
-    <% else %>
-      <%= link_to "フォローする", user_relationships_path(@user), data: { turbo_method: :post }, class: "btn btn-success" %>
-    <% end %>
-  <% end %>
+      <% end %>
+        <% if current_user != @user %>
+          <% if current_user.following?(@user) %>
+            <div class="follow-button-wrapper text-center">
+            <%= button_to "フォローを解除する", user_relationships_path(@user), method: :delete, class: "btn btn-danger" %>
+            </div>
+          <% else %>
+            <div class="follow-button-wrapper text-center">
+            <%= button_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-success" %>
+            </div>
+          <% end %>
+        <% end %>
     <div class="profile-bubble-wrap">
       <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
       <h4 class="profile-bubble"><%= @user.profile %></h4>

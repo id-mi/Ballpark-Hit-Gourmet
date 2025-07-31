@@ -8,6 +8,7 @@
       <% end %>
     </ul>
   <% end %>
+  <!-- 投稿フォーム -->
   <%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
     <div class="form-group">
       <%= f.label :place_category_id, "球場名", class: "form-label-red" %>

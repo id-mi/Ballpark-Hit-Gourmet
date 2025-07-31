@@ -1080,6 +1080,40 @@ h1, .page-title {
   box-sizing: border-box;
 }
 
+p.d-flex.align-self-end {
+  display: flex;           
+  justify-content: center; 
+  align-items: center;
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.follow-button-wrapper {
+  width: 100%;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.follow-button-wrapper form {
+  display: inline-block;
+}
+
+.one-post {
+  text-align: center;
+}
+
+.post-detail-editlinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.no-post-message {
+  height: 100vh; 
+  display: flex;
+  justify-content: center; 
+}
+
 
 @media (max-width: 700px) {
   .form-wrap, .post-detail-card {
@@ -1088,6 +1122,13 @@ h1, .page-title {
   }
   .post-card {
     max-width: 98vw;
+  }
+  .smfsearch {
+    display: block;
+  }
+
+  .main-header {
+    display: flex;
   }
 }
 
@@ -1098,5 +1139,78 @@ h1, .page-title {
   }
   .header-menu-btn {
     font-size: 13px;
+  }
+}
+
+/* 以下ハンバーガーメニュー */
+.header-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* チェックボックスは非表示 */
+.menu-toggle {
+  display: none;
+}
+
+/* ハンバーガーアイコン */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+/* ナビゲーション表示 */
+.header-menu-nav {
+  display: flex;
+}
+
+.header-menu-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header-menu-btn {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* スマホサイズで切り替え */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .header-menu-nav {
+    display: none;
+    position: absolute;
+    top: 60px; /* ヘッダーの高さに応じて調整 */
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border-top: 1px solid #ccc;
+    flex-direction: column;
+    z-index: 1000;
+  }
+
+  .header-menu-list {
+    flex-direction: column;
+  }
+
+  .header-menu-btn {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* チェックが入っていたらメニュー表示 */
+  .menu-toggle:checked + .hamburger + .header-menu-nav {
+    display: flex;
   }
 }
