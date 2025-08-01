@@ -11,7 +11,7 @@
  * It is generally better to create a new file per style scope.
  *
  *
- * @import "bootstrap";    // もしbootstrap使うなら
+ * @import "bootstrap";    // bootstrap使う場合
  * @import "reset";        // リセットCSS
  *= require_self
  */
@@ -30,7 +30,7 @@ body {
   min-height: 100vh;
 }
 
-/* ベースボール感のあるストライプ背景 */
+/* ストライプ背景 */
 body::before {
   content: '';
   position: fixed;
@@ -231,7 +231,7 @@ a:hover {
   text-decoration: underline;
 }
 
-/* 投稿一覧グリッド表示・カードデザイン（ベースボール感・モダン） */
+/* 投稿一覧グリッド表示 */
 .posts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -323,7 +323,7 @@ a:hover {
   text-shadow: 0 2px 8px #388e3c22;
 }
 
-/* 投稿詳細ページ モダン＆ベースボールカード風 */
+/* 投稿詳細ページ */
 .post-detail-card {
   background: linear-gradient(135deg, #fff 80%, #e9f5e1 100%);
   border-radius: 24px 24px 20px 20px;
@@ -464,7 +464,7 @@ body {
   margin-top: 0 !important;
 }
 
-/* ヘッダーロゴをおしゃれな白色に */
+/* ヘッダーロゴを白色に */
 .header-logo {
   background: none !important;
   color: #fff !important;
@@ -499,13 +499,13 @@ body {
   justify-content: center;
 }
 
-/* 新規投稿ページの球場名・ジャンル名ラベル赤字 */
+/* 新規投稿ページの球場名・ジャンル名を赤字に */
 .form-label-red, label[for="post_place_category_id"], label[for="post_genre_category_id"] {
   color: #d32f2f !important;
   font-weight: bold;
 }
 
-/* 新規投稿ページ おしゃれな配置・入力欄統一 */
+/* 新規投稿ページ */
 .form-wrap {
   max-width: 1100px;
   margin: 2.5em auto;
@@ -528,10 +528,10 @@ body {
   font-size: 1em;
   padding: 0.5em 0.8em;
   width: 100% !important;
-  max-width: 400px !important;        /* 最大幅を明確にする */
+  max-width: 400px !important;        /* 最大幅を明確に */
   min-width: 200px;        /* スマホでも読みやすく */
   margin: 0 0.5em 1em 0; /* 中央寄せ & 下に少し余白 */
-  display: block;          /* 中央寄せするには block に */
+  display: block;          /* 中央寄せ */
   border-radius: 8px;
   border: 1.5px solid #388e3c;
   background: #f7fafc;
@@ -623,7 +623,7 @@ body {
   box-shadow: 0 1px 4px #23408e11;
 }
 
-/* 投稿詳細ページ おしゃれな中央寄せ・レイアウト調整 */
+/* 投稿詳細ページ 中央寄せ・レイアウト調整 */
 .post-detail-outer {
   display: flex;
   justify-content: center;
@@ -715,7 +715,7 @@ body {
   }
 }
 
-/* 投稿詳細ページ コメント入力欄を少し小さく */
+/* 投稿詳細ページ コメント入力欄 */
 .post-detail-card .comments textarea.form-control.form-textarea-lg {
   min-height: 48px;
   font-size: 0.98em;
@@ -832,7 +832,7 @@ body {
   box-shadow: 0 2px 8px #388e3c22;
 }
 
-/* 新規投稿ページ フォーム幅・雰囲気調整・金額カンマ対応 */
+/* 新規投稿ページ フォーム幅・金額カンマ対応 */
 .form-wrap {
   max-width: 340px;
   margin: 2.5em auto;
@@ -866,7 +866,7 @@ body {
   font-size: 1em;
 }
 
-/* 投稿詳細ページ 洗練・見やすさ強化 */
+/* 投稿詳細ページ 見やすさ強化 */
 .post-detail-card {
   width: 100%;
   max-width: 540px;
@@ -988,7 +988,7 @@ h1, .page-title {
   margin-top: 3.2em !important;
 }
 
-/* 新規投稿ページの幅を投稿詳細と同じに */
+/* 新規投稿ページの幅を投稿詳細と同じ形に */
 .form-wrap {
   max-width: 540px;
 }
@@ -1214,3 +1214,4 @@ p.d-flex.align-self-end {
     display: flex;
   }
 }
+
