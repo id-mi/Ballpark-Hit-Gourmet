@@ -91,3 +91,5 @@ gem 'bootstrap', '~> 5.3.0'
 gem 'jquery-rails'
 
 gem "sassc-rails"
+
+gem 'psych', '< 5.2.0'
