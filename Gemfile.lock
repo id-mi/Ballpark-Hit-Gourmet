@@ -351,7 +351,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   pg
-  psych (< 5.2.0)
+  psych (~> 5.1.0)
   puma (>= 5.0)
   rails (~> 7.1.5, >= 7.1.5.1)
   refile!

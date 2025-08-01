@@ -92,4 +92,4 @@ gem 'jquery-rails'
 
 gem "sassc-rails"
 
-gem 'psych', '< 5.2.0'
+gem 'psych', '~> 5.1.0'
