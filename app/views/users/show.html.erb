@@ -16,11 +16,15 @@
         <% if current_user != @user %>
           <% if current_user.following?(@user) %>
             <div class="follow-button-wrapper text-center">
-            <%= button_to "フォローを解除する", user_relationships_path(@user), method: :delete, class: "btn btn-danger" %>
+              <%= form_with url: user_relationships_path(@user), method: :delete, local: true, html: { onsubmit: "return confirm('フォローを解除しますか？');" } do %>
+                <%= submit_tag "フォローを解除する", class: "btn btn-danger" %>
+              <% end %>
             </div>
           <% else %>
             <div class="follow-button-wrapper text-center">
-            <%= button_to "フォローする", user_relationships_path(@user), method: :post, class: "btn btn-success" %>
+              <%= form_with url: user_relationships_path(@user), method: :post, local: true do %>
+                <%= submit_tag "フォローする", class: "btn btn-success" %>
+              <% end %>
             </div>
           <% end %>
         <% end %>
