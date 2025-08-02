@@ -44,28 +44,39 @@
         </div>
       </div>
     </div>
+
     <div class="post-detail-actions">
-      <div id="favorite-<%= @post.id %>">
-        <% if @post.favorited_by?(current_user) %>
-          <%= link_to post_favorites_path(@post), method: :delete, class: "favorite-link" do %>
-            <span class="favorite-icon" style="color: red;">♥</span><span class="favorite-count"><%= @post.favorites.count %></span>
+        <div id="favorite-<%= @post.id %>">
+          <% if @post.favorited_by?(current_user) %>
+            <%= form_with url: post_favorites_path(@post), method: :delete, local: true, class: "favorite-form" do %>
+                <button type="submit" class="favorite-link favorited">
+                <span class="favorite-icon">♥</span>
+                <span class="favorite-count"><%= @post.favorites.count %></span>
+                </button>
+            <% end %>
+          <% else %>
+            <%= form_with url: post_favorites_path(@post), method: :post, local: true, class: "favorite-form" do %>
+                <button type="submit" class="favorite-link">
+                <span class="favorite-icon">♡</span>
+                <span class="favorite-count"><%= @post.favorites.count %></span>
+                </button>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to post_favorites_path(@post), method: :post, class: "favorite-link" do %>
-            <span class="favorite-icon" style="color: gray;">♡</span><span class="favorite-count"><%= @post.favorites.count %></span>
-          <% end %>
-        <% end %>
-      </div>
-      <% if @post.user == current_user %>
-        <div class="post-detail-editlinks">
-          <%= link_to "投稿の編集", edit_post_path(@post.id), class: "btn btn-outline-primary btn-sm" %>
-          <%= button_to "投稿の削除", post_path(@post.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-outline-danger btn-sm ml-2" %>
         </div>
-      <% end %>
+
+        <% if @post.user == current_user %>
+          <div class="post-detail-editlinks">
+            <%= link_to "投稿の編集", edit_post_path(@post.id), class: "btn btn-outline-primary btn-sm" %>
+            <%= form_with url: post_path(@post.id), method: :delete, local: true, html: { onsubmit: "return confirm('本当に削除しますか？');" }, class: "d-inline" do %>
+              <%= submit_tag "投稿の削除", class: "btn btn-outline-danger btn-sm ml-2" %>
+            <% end %>
+          </div>
+        <% end %>
       <div class="post-detail-backlink mt-2">
         <%= link_to "投稿一覧へ", posts_path, class: "btn btn-secondary btn-sm" %>
       </div>
     </div>
+
     <div class="comments">
       <h2>コメント</h2>
       <%= form_with(model: [@post, @comment], local: true) do |f| %>
