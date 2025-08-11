@@ -33,3 +33,21 @@ SNSやブログで球場グルメについての投稿を見て、「これら�
 ・観戦当日：今、食べたいと思うグルメを検索するとき  
 ・観戦後　：食べた球場グルメを記録し、他のユーザーと共有するとき
 
+## アプリの使用方法  
+・新規投稿
+<img width="688" height="649" alt="Image" src="https://github.com/user-attachments/assets/399219e1-fd4b-4aae-b401-137d507add00" />  
+フォームに沿って全ての項目を入力（球場名・ジャンル名は選択）  
+すぐに投稿するか下書きとして保存するかの選択が可能。  
+  
+・投稿一覧  
+<img width="933" height="805" alt="Image" src="https://github.com/user-attachments/assets/82fa0bdf-5ac0-47f7-9e00-36298246956b" />  
+球場名・ジャンル名での検索が可能。  
+  
+・投稿詳細  
+<img width="923" height="824" alt="Image" src="https://github.com/user-attachments/assets/496dfd0f-0829-40a3-a18a-db971848de26" />  
+いいね・コメントが可能。  
+（ログインユーザーであれば、投稿編集・削除ボタンが表示される）  
+
+・ユーザーページ  
+<img width="943" height="765" alt="Image" src="https://github.com/user-attachments/assets/a02e4b2b-6524-48ba-977b-62adeed0410c" />  
+各ユーザーページからフォロー・フォロー解除が可能。
